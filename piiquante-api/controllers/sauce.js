@@ -1,9 +1,8 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
 
-// --------------------------
 // CREATE A NEW SAUCE
-// --------------------------
+
 exports.createSauce = (req, res, next) => {
 
   if (!req.file) {
@@ -25,27 +24,24 @@ exports.createSauce = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
-// --------------------------
 // GET ALL SAUCES
-// --------------------------
+
 exports.getAllSauces = (req, res, next) => {
   Sauce.find()
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(400).json({ error }));
 };
 
-// --------------------------
 // GET ONE SAUCE BY ID
-// --------------------------
+
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => res.status(200).json(sauce))
     .catch(error => res.status(404).json({ error }));
 };
 
-// --------------------------
 // UPDATE A SAUCE
-// --------------------------
+
 exports.updateSauce = (req, res, next) => {
 
   const sauceObject = req.file
@@ -73,9 +69,8 @@ exports.updateSauce = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
-// --------------------------
 // DELETE A SAUCE
-// --------------------------
+
 exports.deleteSauce = (req, res, next) => {
 
   Sauce.findOne({ _id: req.params.id })
@@ -100,9 +95,8 @@ exports.deleteSauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-// --------------------------
 // LIKE / DISLIKE A SAUCE
-// --------------------------
+
 exports.likeSauce = (req, res, next) => {
 
   const userId = req.auth.userId;
